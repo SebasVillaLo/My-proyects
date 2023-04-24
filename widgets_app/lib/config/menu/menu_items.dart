@@ -28,7 +28,7 @@ const List<MenuItems> appMenuItems = [
     icon: Icons.credit_card,
   ),
   MenuItems(
-    title: 'Progress Indicators',
+    title: 'Progress cndicators',
     subTitle: 'Generales y controlados',
     link: '/progress',
     icon: Icons.refresh_rounded,
@@ -38,5 +38,11 @@ const List<MenuItems> appMenuItems = [
     subTitle: 'Indicadores en pantalla',
     link: '/snackbars',
     icon: Icons.info_outline,
+  ),
+  MenuItems(
+    title: 'Animated container',
+    subTitle: 'Stateful widget animado',
+    link: '/animated',
+    icon: Icons.check_box_outline_blank_outlined,
   ),
 ];
