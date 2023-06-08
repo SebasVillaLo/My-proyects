@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 
-const List<Map<String, dynamic>> cards = [
-  {'elevation': 0.0, 'label': 'Elevation 0'},
-  {'elevation': 1.0, 'label': 'Elevation 1'},
-  {'elevation': 2.0, 'label': 'Elevation 2'},
-  {'elevation': 3.0, 'label': 'Elevation 3'},
-  {'elevation': 4.0, 'label': 'Elevation 4'},
-  {'elevation': 5.0, 'label': 'Elevation 5'},
+const cards = <Map<String,dynamic>>[
+  { 'elevation': 0.0, 'label': 'Elevation 0' },
+  { 'elevation': 1.0, 'label': 'Elevation 1' },
+  { 'elevation': 2.0, 'label': 'Elevation 2' },
+  { 'elevation': 3.0, 'label': 'Elevation 3' },
+  { 'elevation': 4.0, 'label': 'Elevation 4' },
+  { 'elevation': 5.0, 'label': 'Elevation 5' },
 ];
 
+
+
+
+
 class CardsScreen extends StatelessWidget {
+
   static const String name = 'cards_screen';
+
   const CardsScreen({super.key});
 
   @override
@@ -32,44 +38,40 @@ class _CardsView extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          ...cards.map(
-            (card) => _CardType1(
-              elevation: card['elevation'],
-              label: card['label'],
-            ),
+          
+          ...cards.map( 
+            (card) => _CardType1( elevation: card['elevation'], label: card['label'] ),
           ),
-          ...cards.map(
-            (card) => _CardType2(
-              elevation: card['elevation'],
-              label: card['label'],
-            ),
+
+          ...cards.map( 
+            (card) => _CardType2( elevation: card['elevation'], label: card['label'] ),
           ),
-          ...cards.map(
-            (card) => _CardType3(
-              elevation: card['elevation'],
-              label: card['label'],
-            ),
+
+          ...cards.map( 
+            (card) => _CardType3( elevation: card['elevation'], label: card['label'] ),
           ),
-          ...cards.map(
-            (card) => _CardType4(
-              elevation: card['elevation'],
-              label: card['label'],
-            ),
+
+          ...cards.map( 
+            (card) => _CardType4( elevation: card['elevation'], label: card['label'] ),
           ),
-          const SizedBox(
-            height: 50,
-          )
+          
+          const SizedBox(height: 50 ),
         ],
       ),
     );
   }
 }
 
+
 class _CardType1 extends StatelessWidget {
+
   final String label;
   final double elevation;
 
-  const _CardType1({required this.label, required this.elevation});
+  const _CardType1({
+    required this.label,
+    required this.elevation
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -82,16 +84,16 @@ class _CardType1 extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: IconButton(
+                icon: const Icon( Icons.more_vert_outlined),
                 onPressed: () {},
-                icon: const Icon(
-                  Icons.more_vert,
-                ),
               ),
             ),
+
             Align(
               alignment: Alignment.bottomLeft,
-              child: Text(label),
+              child: Text( label ),
             )
+
           ],
         ),
       ),
@@ -99,23 +101,28 @@ class _CardType1 extends StatelessWidget {
   }
 }
 
+
 class _CardType2 extends StatelessWidget {
+
   final String label;
   final double elevation;
 
-  const _CardType2({required this.label, required this.elevation});
+  const _CardType2({
+    required this.label,
+    required this.elevation
+  });
 
   @override
   Widget build(BuildContext context) {
+
     final colors = Theme.of(context).colorScheme;
+
     return Card(
       shape: RoundedRectangleBorder(
+        borderRadius: const BorderRadius.all( Radius.circular(12) ),
         side: BorderSide(
-          color: colors.outline,
-        ),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(12),
-        ),
+          color: colors.outline
+        )
       ),
       elevation: elevation,
       child: Padding(
@@ -125,16 +132,16 @@ class _CardType2 extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: IconButton(
+                icon: const Icon( Icons.more_vert_outlined),
                 onPressed: () {},
-                icon: const Icon(
-                  Icons.more_vert,
-                ),
               ),
             ),
+
             Align(
               alignment: Alignment.bottomLeft,
               child: Text('$label - outline'),
             )
+
           ],
         ),
       ),
@@ -142,19 +149,26 @@ class _CardType2 extends StatelessWidget {
   }
 }
 
+
+
 class _CardType3 extends StatelessWidget {
+
   final String label;
   final double elevation;
 
-  const _CardType3({required this.label, required this.elevation});
+  const _CardType3({
+    required this.label,
+    required this.elevation
+  });
 
   @override
   Widget build(BuildContext context) {
+
     final colors = Theme.of(context).colorScheme;
 
     return Card(
-      elevation: elevation,
       color: colors.surfaceVariant,
+      elevation: elevation,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
         child: Column(
@@ -162,16 +176,16 @@ class _CardType3 extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: IconButton(
+                icon: const Icon( Icons.more_vert_outlined),
                 onPressed: () {},
-                icon: const Icon(
-                  Icons.more_vert,
-                ),
               ),
             ),
+
             Align(
               alignment: Alignment.bottomLeft,
               child: Text('$label - Filled'),
             )
+
           ],
         ),
       ),
@@ -179,48 +193,57 @@ class _CardType3 extends StatelessWidget {
   }
 }
 
+
+
 class _CardType4 extends StatelessWidget {
+
   final String label;
   final double elevation;
 
-  const _CardType4({required this.label, required this.elevation});
+  const _CardType4({
+    required this.label,
+    required this.elevation
+  });
 
   @override
   Widget build(BuildContext context) {
+
+    // final colors = Theme.of(context).colorScheme;
 
     return Card(
       clipBehavior: Clip.hardEdge,
       elevation: elevation,
       child: Stack(
         children: [
+
           Image.network(
-            'https://picsum.photos/id/${elevation.toInt()}/600/250',
+            'https://picsum.photos/id/${ elevation.toInt() }/600/350',
             height: 350,
             fit: BoxFit.cover,
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) return child;
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            },
           ),
+
+
           Align(
             alignment: Alignment.topRight,
             child: Container(
               decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(bottomLeft: Radius.circular(20))),
+                color: Colors.white,
+                borderRadius: BorderRadius.only( bottomLeft: Radius.circular(20) )
+              ),
               child: IconButton(
+                icon: const Icon( Icons.more_vert_outlined),
                 onPressed: () {},
-                icon: const Icon(
-                  Icons.more_vert,
-                ),
               ),
             ),
           ),
+
+
         ],
       ),
     );
   }
 }
+
+
+
+
